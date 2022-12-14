@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { usuarioModel } from '../models/modelos';
 import { CadastroService } from '../services/cadastro/cadastro.service';
+
 
 @Component({
   selector: 'app-home',
@@ -12,7 +14,7 @@ export class HomeComponent {
   // variavel que guarda o que tem nos inputs
   form!: FormGroup;
   // variavel que guarda a lista de usuario
-  listaUsuario: any; 
+  listaUsuario!: usuarioModel[]; 
 
   // listar elementos
   // injetando serviço dentro do componente
@@ -30,7 +32,7 @@ export class HomeComponent {
     this.cadastrarUsuarios()
   }
 
-  // função para cadastrar usuarios
+  // função para pegar usuarios da API
   cadastrarUsuarios(){
     this.servicocadastro.getCadastro().subscribe({
       next:(usuario: any)=>{
@@ -46,29 +48,34 @@ export class HomeComponent {
     })
   }
 
+  // Função para postar informações das Inputs na API
   postarUsuario(){
-    let nomeInput = this.form.controls["nome"].setValue
-    let emailInput = this.form.controls["email"].setValue
-    let senhaInput = this.form.controls["senha"].setValue
+    // pegar indormações dos inputs
+    let nomeInput = this.form.controls["nome"].value
+    let emailInput = this.form.controls["email"].value
+    let senhaInput = this.form.controls["senha"].value
 
+    // criando variavel para  pegar id corretamente sem se repetir 
+    let idcorrer = ((this.listaUsuario[(this.listaUsuario.length)-1].id)+1)
+    
     let dados={
-      id: 3,
+      id: idcorrer,
       nome: nomeInput,
       email:emailInput,
       senha:senhaInput
     }
 
-    this.servicocadastro.postCdastro(dados).subscribe({
+    this.servicocadastro.postCadastro(dados).subscribe({
       // oque vai acontecer quando der certo?
-      next:(usuario: any) => {
+      next:(usuario: usuarioModel[]) => {
         // guardando os dados na variavel listaUsuarios
         console.log(usuario);
-        this.listaUsuario()
+        this.cadastrarUsuarios()
       },
 
       // caso de errado
       error:(erro: any)=>{
-        console.log('deu ruim ');
+        console.log('deu ruim');
       }
     })
   }
