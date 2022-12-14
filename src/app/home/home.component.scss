@@ -1,0 +1,50 @@
+main{
+    width: 100%;
+    height: 627px;
+    background-color: burlywood;
+    display: flex;
+    align-items: center;
+    font-family: 'VT323';
+    justify-content: center;
+}
+
+form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+input{
+    width: 250px;
+    height: 30px;
+    font-family: 'VT323';
+    font-size: 20px;
+    box-shadow: 4px 4px 2px 1px rgba(0, 0, 0, 0.2);
+    background-color: bisque;
+}
+
+label{
+    margin-top: 40px;
+    width: 250px;
+    align-self:initial;
+    font-size: 25px;
+}
+
+button{
+    margin-top: 40px;
+    width: 170px;
+    height: 40px;
+    font-family: 'VT323';
+    font-size: 25px;
+    background-color: bisque;
+    box-shadow: 4px 4px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+button:hover{
+    background: rgb(201, 174, 141);
+}
+
+button:active{
+    background-color: rgb(146, 123, 94);;
+}

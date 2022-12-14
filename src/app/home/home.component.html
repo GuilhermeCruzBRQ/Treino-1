@@ -1,0 +1,16 @@
+<main>
+    <div>
+        <form [formGroup]="form">
+            <label for="nome">Nome:</label>
+            <input type="text" placeholder="Digite seu nome" formControlName="nome">
+
+            <label for="email">Email:</label>
+            <input type="text" placeholder="exemploi@email.com" formControlName="email">
+
+            <label for="senha">Senha:</label>
+            <input type="password" placeholder="digite ssua senha" formControlName="senha">
+
+            <button type="submit" (click)="postarUsuario()">Cadastrar</button>
+        </form>
+    </div>
+</main>
