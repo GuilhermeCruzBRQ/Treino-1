@@ -13,7 +13,7 @@ import { CadastroService } from '../services/cadastro/cadastro.service';
 export class HomeComponent {
   // variavel que guarda o que tem nos inputs
   form!: FormGroup;
-  // variavel que guarda a lista de usuario
+  // variavel que guarda a lista de usuario da API
   listaUsuario!: usuarioModel[]; 
   // criando variavel para checar se o input de nome está preenchidos
   inputNomeErro:boolean = false;
@@ -23,6 +23,8 @@ export class HomeComponent {
   inputSenhaErro:boolean = false;
   // criando variavel para checar se as senhas estão iguais
   certificarSenhaErro:boolean = false;
+  // criando variavel de email existente
+  emailExistente:boolean = false;
 
   // listar elementos
   // injetando serviço dentro do componente
@@ -45,7 +47,7 @@ export class HomeComponent {
   // função para pegar usuarios da API
   cadastrarUsuarios(){
     this.servicocadastro.getCadastro().subscribe({
-      next:(usuario: any)=>{
+      next:(usuario: usuarioModel[])=>{
         // oque vai acontecer quando der certo?
         this.listaUsuario = usuario;
         console.log(this.listaUsuario);
@@ -53,7 +55,7 @@ export class HomeComponent {
 
       // caso de errado
       error:(erro: any)=>{
-        console.log('deu ruim1 ');
+        console.log('erro para pegar usuarios da API');
       }
     })
   }
@@ -88,6 +90,17 @@ export class HomeComponent {
       return
     }
 
+    // verificar se o email na input já existe na API
+    this.listaUsuario.forEach(objeto =>{
+      if(objeto.email === emailInput){
+        // se o email for existente
+        this.emailExistente = true;
+        // dar erro na função
+        console.log("esse email não pode ser utilizado");
+        return
+      }
+    })
+
     // ver o input de senha está preenchido 
     if(this.form.controls["senha"].invalid){
       // se inputErro for verdadeiro,
@@ -116,19 +129,26 @@ export class HomeComponent {
       senha:senhaInput
     }
 
-
-    this.servicocadastro.postCadastro(dados).subscribe({
-      // oque vai acontecer quando der certo?
-      next:(usuario: usuarioModel[]) => {
-        // guardando os dados na variavel listaUsuarios
-        console.log(usuario);
-        this.cadastrarUsuarios()
-      },
-
-      // caso de errado
-      error:(erro: any)=>{
-        console.log('deu ruim');
-      }
-    })
+    if(this.emailExistente !== true){
+      this.servicocadastro.postCadastro(dados).subscribe({
+        // oque vai acontecer quando der certo?
+        next:(usuario: usuarioModel[]) => {
+          // guardando os dados na variavel listaUsuarios
+          console.log(usuario);
+          this.cadastrarUsuarios()
+        },
+        
+        // caso de errado
+        error:(erro: any)=>{
+          console.log('erro de cadastro');
+        }
+      })
+    }
+    /* deixar o valor da variavel como falso no final da função
+     para reiniciar a opção de cadastrar e assim permitir
+     uma nova tentativa 
+     */
+    this.emailExistente = false
+    this.inputNomeErro = false
   }
 }

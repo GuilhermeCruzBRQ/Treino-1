@@ -27,7 +27,13 @@
     {
       "id": 5,
       "nome": "a",
-      "email": "a@fdc.com",
+      "email": "teste4@email.com",
+      "senha": "a"
+    },
+    {
+      "id": 6,
+      "nome": "a",
+      "email": "teste2@adaemail.com",
       "senha": "a"
     }
   ]
