@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { usuarioModel } from '../models/modelos';
 import { CadastroService } from '../services/cadastro/cadastro.service';
 
@@ -15,6 +15,14 @@ export class HomeComponent {
   form!: FormGroup;
   // variavel que guarda a lista de usuario
   listaUsuario!: usuarioModel[]; 
+  // criando variavel para checar se o input de nome está preenchidos
+  inputNomeErro:boolean = false;
+  // criando variavel para checar se o input de email está preenchidos
+  inputEmailErro:boolean = false;
+  // criando variavel para checar se o input de senha está preenchidos
+  inputSenhaErro:boolean = false;
+  // criando variavel para checar se as senhas estão iguais
+  certificarSenhaErro:boolean = false;
 
   // listar elementos
   // injetando serviço dentro do componente
@@ -24,9 +32,11 @@ export class HomeComponent {
   ngOnInit(){
     // fazendo conecção entre ts e html
     this.form = this.formbuilder.group({
-      nome: "",
-      email: "",
-      senha: ""
+      // deixando os inputs obrigatorios
+      nome: new FormControl("", [Validators.required]),
+      email: new FormControl("", [Validators.required, Validators.email]),
+      senha: new FormControl("", [Validators.required]),
+      certificarSenha: new FormControl("", [Validators.required])
     })
 
     this.cadastrarUsuarios()
@@ -58,12 +68,54 @@ export class HomeComponent {
     // criando variavel para  pegar id corretamente sem se repetir 
     let idcorrer = ((this.listaUsuario[(this.listaUsuario.length)-1].id)+1)
     
+    // ver o input de nome está preenchido 
+    if(this.form.controls["nome"].invalid){
+      // se inputErro for verdadeiro,
+      this.inputNomeErro = true
+      // mostrando no console antes de parar a função
+      console.log("nome obrigatorio");
+      // então a função para e não posta os dados na API
+      return
+    }
+
+    // ver o input de email está preenchido 
+    if(this.form.controls["email"].invalid){
+      // se inputErro for verdadeiro,
+      this.inputEmailErro = true
+      // mostrando no console antes de parar a função
+      console.log("email obrigatorio");
+      // então a função para e não posta os dados na API
+      return
+    }
+
+    // ver o input de senha está preenchido 
+    if(this.form.controls["senha"].invalid){
+      // se inputErro for verdadeiro,
+      this.inputSenhaErro = true
+      // mostrando no console antes de parar a função
+      console.log("senha obrigatorio");
+      // então a função para e não posta os dados na API
+      return
+    }
+
+    // verificar se as senhas estão iguais
+    if(this.form.controls["senha"].value !== this.form.controls["certificarSenha"].value){
+      // se as senhas forem diferentes
+      this.certificarSenhaErro = true
+      // se for verdadeiro então a função não continua
+      console.log("senhas opostas umas das outras");
+      return
+    }
+    
+    
+    // fazendo variavel que lê os dados inseridos nos inputs
     let dados={
-      id: idcorrer,
-      nome: nomeInput,
+      id:idcorrer,
+      nome:nomeInput,
       email:emailInput,
       senha:senhaInput
     }
+
 
     this.servicocadastro.postCadastro(dados).subscribe({
       // oque vai acontecer quando der certo?

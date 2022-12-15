@@ -1,4 +1,5 @@
 main{
+    max-width: 1360px;
     width: 100%;
     height: 627px;
     background-color: burlywood;
@@ -6,6 +7,33 @@ main{
     align-items: center;
     font-family: 'VT323';
     justify-content: center;
+}
+
+h1{
+    display: flex;
+    justify-content: center;
+    color: rgb(117, 62, 31);
+    font-size: 100px;
+}
+
+.linha{
+    width: 330px;
+    height: 1.4px;
+    background-color: rgb(117, 62, 31);
+}
+
+.linha2{
+    margin-top: 8px;
+    width: 170px;
+    height: 1.4px;
+    background-color: rgb(117, 62, 31);
+}
+
+.alinhar{
+    display: flex;
+    width: 330;
+    align-items: center;
+    flex-direction: column;
 }
 
 form{
@@ -22,6 +50,30 @@ input{
     font-size: 20px;
     box-shadow: 4px 4px 2px 1px rgba(0, 0, 0, 0.2);
     background-color: bisque;
+}
+
+.nome{
+    position:absolute;
+    height: 270px;
+}
+
+.email{
+    position:absolute;
+    height: 70px;
+}
+
+.senha{
+    position:absolute;
+    height: 160px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.certificarSenha{
+    position:absolute;
+    height: 355px;
+    display: flex;
+    align-items: flex-end;
 }
 
 label{
@@ -46,5 +98,6 @@ button:hover{
 }
 
 button:active{
-    background-color: rgb(146, 123, 94);;
+    background-color: rgb(146, 123, 94);
 }
+
