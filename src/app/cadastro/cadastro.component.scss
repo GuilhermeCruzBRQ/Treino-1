@@ -1,0 +1,103 @@
+main{
+    max-width: 1360px;
+    width: 100%;
+    height: 700px;
+    background-color: burlywood;
+    display: flex;
+    align-items: center;
+    font-family: 'VT323';
+    justify-content: center;
+}
+
+h1{
+    display: flex;
+    justify-content: center;
+    color: rgb(117, 62, 31);
+    font-size: 100px;
+}
+
+.linha{
+    width: 500px;
+    height: 1.4px;
+    background-color: rgb(117, 62, 31);
+}
+
+.linha2{
+    margin-top: 8px;
+    width: 270px;
+    height: 1.4px;
+    background-color: rgb(117, 62, 31);
+}
+
+.alinhar{
+    display: flex;
+    width: 330;
+    align-items: center;
+    flex-direction: column;
+}
+
+form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+input{
+    width: 250px;
+    height: 30px;
+    font-family: 'VT323';
+    font-size: 20px;
+    box-shadow: 4px 4px 2px 1px rgba(0, 0, 0, 0.2);
+    background-color: bisque;
+}
+
+.nome{
+    position:absolute;
+    height: 350px;
+}
+
+.email{
+    position:absolute;
+    height: 155px;
+}
+
+.senha{
+    position:absolute;
+    height: 75px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.certificarSenha{
+    position:absolute;
+    height: 270px;
+    display: flex;
+    align-items: flex-end;
+}
+
+label{
+    margin-top: 40px;
+    width: 250px;
+    align-self:initial;
+    font-size: 25px;
+}
+
+button{
+    margin-top: 40px;
+    width: 170px;
+    height: 40px;
+    font-family: 'VT323';
+    font-size: 25px;
+    background-color: bisque;
+    box-shadow: 4px 4px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+button:hover{
+    background: rgb(201, 174, 141);
+}
+
+button:active{
+    background-color: rgb(146, 123, 94);
+}
+

@@ -1,4 +1,4 @@
-export interface usuarioModel{
+export interface cadastrarModel{
     id: number;
     nome: string;
     email: string;

@@ -1,29 +1,11 @@
 <main>
-    <div>
-        <h1>[ Criar conta ]</h1>
-        <div class="alinhar">
-            <div class="linha"></div>
-            <div class="linha2"></div>
-        </div>
-        
-        <form [formGroup]="form">
-            <label for="nome">Nome:</label>
-            <input type="text" placeholder="Digite seu nome" formControlName="nome" required>
-            <p class="nome" *ngIf="this.inputNomeErro">Nome obrigatório</p>
+    <h1>[ Tripulação ]</h1>
+    <div class="linha"></div>
+    <div class="linha2"></div>
 
-            <label for="email">Email:</label>
-            <input type="text" placeholder="exemploi@email.com" formControlName="email" required>
-            <p class="email" *ngIf="this.inputEmailErro">E-mail invalido ou incompleto</p>
-            
-            <label for="senha">Senha:</label>
-            <input type="password" placeholder="Digite sua senha" formControlName="senha" required>
-            <p class="senha" *ngIf="this.inputSenhaErro">Senha obrigatório</p>
+    <p>Já tem uma conta?</p>
+    <button type="button" routerLink="../entrar">Entrar</button>
 
-            <label for="certificarSenha">Confirme sua Senha:</label>
-            <input type="password" placeholder="Certifique sua senha" formControlName="certificarSenha" required>
-            <p class="certificarSenha" *ngIf="this.certificarSenhaErro">As senhas devem ser iguais</p>
-
-            <button type="submit" (click)="postarUsuario()">Cadastrar</button>
-        </form>
-    </div>
+    <p>Não tem uma conta?</p>
+    <button type="button" routerLink="../cadastro">Criar</button>
 </main>

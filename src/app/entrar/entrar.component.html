@@ -1,0 +1,20 @@
+<main>
+    <div class="alinhar">
+        <h1>[ Entrar ]</h1>
+        <div class="linha"></div>
+        <div class="linha2"></div>
+    </div>    
+    
+    <div>
+        <form [formGroup]="form">
+            <label for="">E-mail</label>
+            <input name="seu_email" type="text" placeholder="Digite se e-mail aqui..." formControlName="email" required>
+
+            <label for="">Senha</label>
+            <input name="sua-senha" type="password" placeholder="Digite sua senha aqui..." formControlName="senha" required>
+
+            <button name="botão_entrar" type="submit">Entrar</button>
+            <button name="botão_voltar" type="button" routerLink="../home">Voltar</button>
+        </form>
+    </div>
+</main>
